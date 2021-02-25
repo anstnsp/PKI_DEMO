@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 import com.aton.message.UCPIDStatusCode;
-import com.aton.message.service.UCPID;
+import com.aton.message.service.UCPIDRequestFactory;
 
 import org.bouncycastle.asn1.DERBitString;
 
@@ -14,7 +14,7 @@ public class Main {
         boolean b = true;
         boolean c = true;
         boolean d = true;
-        String str = UCPID.makePersonInfoReq(message, a,b,c,d);
+        String str = UCPIDRequestFactory.createPersonInfoReq(message, a,b,c,d);
 
         System.out.println(str);
  

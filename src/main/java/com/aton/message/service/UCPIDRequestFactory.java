@@ -13,7 +13,7 @@ import org.bouncycastle.asn1.ASN1Sequence;
 import org.bouncycastle.asn1.DERSequence;
 import org.bouncycastle.asn1.DERUTF8String;
 
-public class UCPID {
+public class UCPIDRequestFactory {
 
     /**
      * 
@@ -25,7 +25,7 @@ public class UCPID {
      * @return 개인정보동의활용 요청 메세지
      * @throws IOException
      */
-    public static synchronized String makePersonInfoReq(String userAgreement, boolean isAgreeRealName, 
+    public static synchronized String createPersonInfoReq(String userAgreement, boolean isAgreeRealName, 
                         boolean isAgreeGender, boolean isAgreeNtionalInfo, boolean isAgreeBirthDate) throws IOException {
         PersonInfoReq personInfoReq = new PersonInfoReq(userAgreement, isAgreeRealName, 
                                                 isAgreeGender, isAgreeNtionalInfo, isAgreeBirthDate);

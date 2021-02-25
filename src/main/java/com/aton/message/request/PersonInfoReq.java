@@ -15,10 +15,8 @@ import org.bouncycastle.asn1.DERUTF8String;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class PersonInfoReq implements ASN1Encodable {
     
@@ -31,7 +29,7 @@ public class PersonInfoReq implements ASN1Encodable {
      */
     private ASN1BitString userAgreeInfo; 
 
-    public PersonInfoReq(String userAgreement, boolean isAgreeRealName, 
+    protected PersonInfoReq(String userAgreement, boolean isAgreeRealName, 
     boolean isAgreeGender, boolean isAgreeNtionalInfo, boolean isAgreeBirthDate) {
       int[] agreeArr = new int[4]; 
       agreeArr[0] = Util.convertBooleanToZeroOne(isAgreeRealName); 
@@ -44,7 +42,7 @@ public class PersonInfoReq implements ASN1Encodable {
 
     }
 
-    public String toHexSting() throws IOException {
+    protected String toHexSting() throws IOException {
       ASN1EncodableVector storage = new ASN1EncodableVector();
       storage.add(this.userAgreement);
       storage.add(userAgreeInfo);

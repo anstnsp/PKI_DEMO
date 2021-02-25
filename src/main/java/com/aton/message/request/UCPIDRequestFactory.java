@@ -1,4 +1,4 @@
-package com.aton.message.service;
+package com.aton.message.request;
 
 import java.io.IOException;
 

@@ -46,7 +46,7 @@ public enum UserAgreeInfo implements UCPIDEnumType {
 
 
     byte[] fromUserAgreeInfo = new byte[]{userAgreeInfo};
-
+    
     ASN1BitString bitString  = new DERBitString(fromUserAgreeInfo);
     return bitString;
   }

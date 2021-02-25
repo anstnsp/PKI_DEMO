@@ -3,6 +3,7 @@ package com.aton.message.service;
 import java.io.IOException;
 
 import com.aton.message.UserAgreeInfo;
+import com.aton.message.request.PersonInfoReq;
 import com.aton.message.utils.Util;
 
 import org.bouncycastle.asn1.ASN1BitString;
@@ -13,7 +14,6 @@ import org.bouncycastle.asn1.DERSequence;
 import org.bouncycastle.asn1.DERUTF8String;
 
 public class UCPID {
-
 
     /**
      * 
@@ -27,25 +27,30 @@ public class UCPID {
      */
     public static synchronized String makePersonInfoReq(String userAgreement, boolean isAgreeRealName, 
                         boolean isAgreeGender, boolean isAgreeNtionalInfo, boolean isAgreeBirthDate) throws IOException {
-
-        int[] agreeArr = new int[4]; 
-        agreeArr[0] = Util.convertBooleanToZeroOne(isAgreeRealName); 
-        agreeArr[1] = Util.convertBooleanToZeroOne(isAgreeGender); 
-        agreeArr[2] = Util.convertBooleanToZeroOne(isAgreeNtionalInfo); 
-        agreeArr[3] = Util.convertBooleanToZeroOne(isAgreeBirthDate);
-
-        ASN1Primitive derUtf8String = new DERUTF8String(userAgreement);
-        ASN1BitString bitString = UserAgreeInfo.toBitString(agreeArr);
-        ASN1EncodableVector storage = new ASN1EncodableVector();
-        storage.add(derUtf8String);
-        storage.add(bitString);
-
-        ASN1Sequence sequence = new DERSequence(storage);
-        
-        byte[] personInfoReqBinary = sequence.getEncoded();
-        String PersonInfoHexStr = Util.byteArrayToHexString(personInfoReqBinary);
-
+        PersonInfoReq personInfoReq = new PersonInfoReq(userAgreement, isAgreeRealName, 
+                                                isAgreeGender, isAgreeNtionalInfo, isAgreeBirthDate);
+        String PersonInfoHexStr = personInfoReq.toHexSting();
         return PersonInfoHexStr;
+
+
+        // int[] agreeArr = new int[4]; 
+        // agreeArr[0] = Util.convertBooleanToZeroOne(isAgreeRealName); 
+        // agreeArr[1] = Util.convertBooleanToZeroOne(isAgreeGender); 
+        // agreeArr[2] = Util.convertBooleanToZeroOne(isAgreeNtionalInfo); 
+        // agreeArr[3] = Util.convertBooleanToZeroOne(isAgreeBirthDate);
+
+        // ASN1Primitive derUtf8String = new DERUTF8String(userAgreement);
+        // ASN1BitString bitString = UserAgreeInfo.toBitString(agreeArr);
+        // ASN1EncodableVector storage = new ASN1EncodableVector();
+        // storage.add(derUtf8String);
+        // storage.add(bitString);
+
+        // ASN1Sequence sequence = new DERSequence(storage);
+        
+        // byte[] personInfoReqBinary = sequence.getEncoded();
+        // String PersonInfoHexStr = Util.byteArrayToHexString(personInfoReqBinary);
+
+        // return PersonInfoHexStr;
 
     }
 

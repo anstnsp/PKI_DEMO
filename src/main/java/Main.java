@@ -1,5 +1,9 @@
 import java.io.IOException;
+
+import com.aton.message.UCPIDStatusCode;
 import com.aton.message.service.UCPID;
+
+import org.bouncycastle.asn1.DERBitString;
 
 public class Main {
 
@@ -13,10 +17,17 @@ public class Main {
         String str = UCPID.makePersonInfoReq(message, a,b,c,d);
 
         System.out.println(str);
+ 
 
+        UCPIDStatusCode code = UCPIDStatusCode.getStatusCodeFromBitString(new DERBitString(41));
+        System.out.println("code : " + code);
     }
 
 
+    /**
+     * new DERBitString(15) -> #0302000F
+     * new DERBitString(15).intValue() -> 15 
+     */
 
 		
 }
